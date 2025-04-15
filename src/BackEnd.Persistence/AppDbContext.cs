@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Configuration;
 namespace BackEnd.Persistence.Entities;
 
-public partial class UwrmdxbzContext : DbContext
+public partial class AppDbContext : DbContext
 {
-    public UwrmdxbzContext() { }
+    public AppDbContext() { }
 
-    public UwrmdxbzContext(DbContextOptions<UwrmdxbzContext> options)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
     public virtual DbSet<CalendarEntity> Calendars { get; set; }

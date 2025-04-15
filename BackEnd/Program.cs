@@ -29,17 +29,17 @@ services.AddScoped<IUserRepository, UsersRepository>();
 
 services.AddScoped<IJwtProvider, JwtProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
-services.AddScoped<IAuthRepository, AuthService>();
 
 
 services.AddAutoMapper(typeof(DataBaseMappings));
 services.AddScoped<AuthService>();
 services.AddScoped<UserServices>();
 services.AddScoped<EventService>();
+ 
 
 
 
-services.AddDbContext<UwrmdxbzContext>(options =>
+services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("LearningDbContext"));
 });

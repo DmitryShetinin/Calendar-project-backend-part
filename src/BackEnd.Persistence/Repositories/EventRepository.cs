@@ -8,11 +8,11 @@ namespace BackEnd.Persistence.Repositories
 {
     public class EventRepository : IEventRepository
     {
-        private readonly UwrmdxbzContext _context;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
 
-        public EventRepository(UwrmdxbzContext context, IMapper mapper)
+        public EventRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

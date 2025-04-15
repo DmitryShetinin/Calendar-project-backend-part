@@ -9,9 +9,9 @@ namespace BackEnd.Persistence.Repositories
 
     public class UsersRepository : IUserRepository
     {
-        private readonly UwrmdxbzContext _context;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public UsersRepository(UwrmdxbzContext context, IMapper mapper)
+        public UsersRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
