@@ -4,7 +4,7 @@ using BackEnd.Core.Interfaces.Repositories;
 
 namespace BackEnd.Application.Services
 {
-    public class EventService : IEventRepository
+    public class EventService 
     {
         private readonly IEventRepository _eventRepository;
         public EventService(IEventRepository eventRepository)

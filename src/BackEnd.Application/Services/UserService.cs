@@ -6,17 +6,17 @@ namespace BackEnd.Services
 {
     public class UserServices
     {
- 
+
         private readonly IUserRepository _userRepository;
-    
+
         public UserServices(IUserRepository userRepository, IPasswordHasher passwordHasher, IJwtProvider jwtProvider)
         {
- 
+
             _userRepository = userRepository;
-    
+
 
         }
-    
+
 
         public async Task<List<User>> GetAllUsers()
         {
@@ -24,7 +24,7 @@ namespace BackEnd.Services
         }
 
 
- 
+
 
     }
 }

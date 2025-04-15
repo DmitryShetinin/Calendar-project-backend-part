@@ -3,19 +3,20 @@ using BackEnd.EndPoints;
 using BackEnd.Extensions;
 using BackEnd.Infrastructure;
 using BackEnd.Interfaces.Auth;
-using BackEnd.Persistence;
 using BackEnd.Services;
-using BackEnd.Persistence.Entities;
-using Microsoft.EntityFrameworkCore;
-using BackEnd.Persistence.Repositories;
+
 using BackEnd.Core.Interfaces.Repositories;
 using BackEnd.Application.Services;
+using BackEnd.Persistence.Repositories;
+using BackEnd.Persistence;
+using BackEnd.Persistence.Entities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-// РќР°СЃС‚СЂРѕР№РєР° РїРѕСЂС‚Р°
+// Настройка порта
 builder.WebHost.UseUrls("http://localhost:5051");
 
 services.AddApiAuthentication(configuration);
@@ -29,7 +30,7 @@ services.AddScoped<IUserRepository, UsersRepository>();
 services.AddScoped<IJwtProvider, JwtProvider>();
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 services.AddScoped<IAuthRepository, AuthService>();
- 
+
 
 services.AddAutoMapper(typeof(DataBaseMappings));
 services.AddScoped<AuthService>();
@@ -54,18 +55,18 @@ services.AddCors(options =>
 });
 
 var app = builder.Build();
-  
-// РќР°СЃС‚СЂРѕР№РєР° Swagger
+
+// Настройка Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options => 
+    app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = "swagger"; // РџСѓС‚СЊ /swagger/index.html
+        options.RoutePrefix = "swagger"; // Путь /swagger/index.html
     });
 }
- 
+
 app.UseCors();
 app.UseStaticFiles();
 app.UseAuthentication();

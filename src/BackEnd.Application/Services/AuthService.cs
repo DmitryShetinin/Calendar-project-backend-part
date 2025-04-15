@@ -4,7 +4,7 @@ using BackEnd.Models;
 
 namespace BackEnd.Application.Services
 {
-    public class AuthService : IAuthRepository
+    public class AuthService 
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher _passwordHasher;
@@ -12,10 +12,11 @@ namespace BackEnd.Application.Services
         public AuthService(
             IUserRepository userRepository,
             IPasswordHasher passwordHasher
-        ) {
+        )
+        {
             _passwordHasher = passwordHasher;
             _userRepository = userRepository;
-      
+
         }
         public async Task<Guid> RegisterAsync(string userName, string email, string password)
         {
@@ -25,7 +26,7 @@ namespace BackEnd.Application.Services
             await _userRepository.AddAsync(user);
 
             return user.Id;
-          
+
         }
 
 
