@@ -35,14 +35,15 @@ services.AddAutoMapper(typeof(DataBaseMappings));
 services.AddScoped<AuthService>();
 services.AddScoped<UserServices>();
 services.AddScoped<EventService>();
+
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("LearningDbContext")),
+    ServiceLifetime.Scoped   
+);
+
+
  
-
-
-
-services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("LearningDbContext"));
-});
 
 services.AddCors(options =>
 {
@@ -56,22 +57,27 @@ services.AddCors(options =>
 
 var app = builder.Build();
 
+
+
+ 
+
+
 // Настройка Swagger
-if (app.Environment.IsDevelopment())
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = "swagger"; // Путь /swagger/index.html
-    });
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = "swagger"; // Путь /swagger/index.html
+});
+ 
 
 app.UseCors();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapEventsEndpoints(); 
 app.MapUsersEndpoints();
-
+app.MapAuthEndpoints(); 
 app.Run();
