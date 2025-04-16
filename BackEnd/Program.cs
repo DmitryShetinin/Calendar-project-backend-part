@@ -17,8 +17,8 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 
 // Настройка порта
-builder.WebHost.UseUrls("http://localhost:5051");
-
+builder.WebHost.UseUrls("http://+:5051");
+ 
 services.AddApiAuthentication(configuration);
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
@@ -59,17 +59,14 @@ var app = builder.Build();
 
 
 
- 
+
 
 
 // Настройка Swagger
 
+ 
 app.UseSwagger();
-app.UseSwaggerUI(options =>
-{
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = "swagger"; // Путь /swagger/index.html
-});
+app.UseSwaggerUI();
  
 
 app.UseCors();

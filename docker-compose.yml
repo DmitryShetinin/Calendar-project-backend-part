@@ -1,6 +1,6 @@
 services:
-  authservice:
-    image: authservice
+  server-calendar:
+    image: server-calendar
     build: .
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
